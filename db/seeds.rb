@@ -11,7 +11,7 @@ require 'json'
 file = File.read('./lib/course.json')
 data_hash_list = JSON.parse(file)
 data_hash_list.each do |data_hash|
-  Course.create({course_id: data_hash['id'], code: data_hash['code'], name: data_hash['name']})
+  Course.create({code: data_hash['code'], name: data_hash['name']})
 end
 
 #read instructor data into database
@@ -26,4 +26,13 @@ file = File.read('./lib/instructor.json')
 data_hash_list = JSON.parse(file)
 data_hash_list.each do |data_hash|
   Instructor.create({instructor_id: data_hash['id'], instructor_email: data_hash['email'], first: data_hash['first'], middle: data_hash['middle'], last: data_hash['last']})
+end
+
+#build relation between courses and subjects -- course_subjects
+file = File.read('./lib/course.json')
+data_hash_list = JSON.parse(file)
+data_hash_list.each do |data_hash|
+  data_hash['subjects'].each do |subject|
+    Coursesubject.create({course_code: data_hash['code'], course_name: data_hash['name'], subject_id:subject['id']})
+  end
 end

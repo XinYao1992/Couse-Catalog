@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= javascript_include_tag 'application' %>
+  <title>Sample Rails Bootstrap Application</title>
+  <%= stylesheet_link_tag "application", media: "all",
+                          "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -9,6 +12,7 @@
     <% if signed_in? -%>
       <%= button_to t(".sign_out"), sign_out_path, method: :get %>
       <%= link_to t(".home page"), home_path%>
+      <%= link_to t(".search page"), search_path%>
       <%= link_to t(".courses"), courses_path%>
       <%= link_to t(".subjects"), subjects_path%>
       <%= link_to t(".instructors"), instructors_path%>

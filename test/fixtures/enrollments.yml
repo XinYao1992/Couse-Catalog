@@ -1,0 +1,14 @@
+# Read about fixtures at
+# http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  email: MyString
+  course_code: MyString
+  course_name: MyString
+  subject_id: MyString
+
+two:
+  email: MyString
+  course_code: MyString
+  course_name: MyString
+  subject_id: MyString
