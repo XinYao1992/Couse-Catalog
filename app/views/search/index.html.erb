@@ -12,26 +12,27 @@
   <input type="submit" value="Search">
   </form>
 
-<%if @coursesubjects != nil%>
-  <table>
-    <thead>
-      <tr>
-        <th>Course code</th>
-        <th>Course name</th>
-        <th>Subject</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @coursesubjects.each do |coursesubject| %>
+  <%if @coursesubjects != nil%>
+    <table class="table">
+      <thead>
         <tr>
-          <td><%= coursesubject.course_code %></td>
-          <td><%= coursesubject.course_name %></td>
-          <td><%= coursesubject.subject_id %></td>
-          <td><%= button_to 'Enroll', {:controller => "enrollments", :action => "create", :email=> current_user.email, :course_code => coursesubject.course_code, :course_name=> coursesubject.course_name, :subject_id=> coursesubject.subject_id} , :method=>:post  %></td>
+          <th>Course code!!</th>
+          <th>Course name</th>
+          <th>Subject</th>
+          <th colspan="3"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-<%end%>
+      </thead>
+      <tbody>
+        <% @coursesubjects.each do |coursesubject| %>
+          <tr>
+            <td><%= coursesubject.course_code %></td>
+            <td><%= coursesubject.course_name %></td>
+            <td><%= coursesubject.subject_id %></td>
+            <td><%= button_to 'Enroll', {:controller => "enrollments", :action => "create", :email=> current_user.email, :course_code => coursesubject.course_code, :course_name=> coursesubject.course_name, :subject_id=> coursesubject.subject_id} , :method=>:post  %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%end%>
+
 </div>

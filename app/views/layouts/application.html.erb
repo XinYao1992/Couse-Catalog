@@ -8,16 +8,16 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <div id="header">
+  <div id="header" class="btn-group">
     <% if signed_in? -%>
-      <%= button_to t(".sign_out"), sign_out_path, method: :get %>
-      <%= link_to t(".home page"), home_path%>
-      <%= link_to t(".search page"), search_path%>
-      <%= link_to t(".courses"), courses_path%>
-      <%= link_to t(".subjects"), subjects_path%>
-      <%= link_to t(".instructors"), instructors_path%>
+      <%= link_to t(".sign out"), sign_out_path, class: "btn btn-default"%>
+      <%= link_to t(".home page"), home_path, class: "btn btn-default"%>
+      <%= link_to t(".search page"), coursesubjects_path, class: "btn btn-default"%>
+      <%= link_to t(".courses"), courses_path, class: "btn btn-default"%>
+      <%= link_to t(".subjects"), subjects_path, class: "btn btn-default"%>
+      <%= link_to t(".instructors"), instructors_path, class: "btn btn-default"%>
     <% else -%>
-      <%= link_to t(".sign_in"), sign_in_path %>
+      <%= link_to t(".sign_in"), sign_in_path, class: "btn btn-default" %>
     <% end -%>
   </div>
 

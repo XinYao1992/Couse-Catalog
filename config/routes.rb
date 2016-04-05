@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
   get 'search/index', as: "search"
 
+  get 'coursesubjects/search', as: "coursesubjects"
+
   resources :enrollments
-  resources :coursesubjects
+
+  resources :coursesubjects do
+    collection do
+      get 'search'
+      get 'do_search'
+    end
+  end
+
   resources :instructors
   resources :subjects
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]

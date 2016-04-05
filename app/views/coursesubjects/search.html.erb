@@ -1,0 +1,46 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+       <script type="text/javascript">
+           function selectOption() {
+             var text = document.getElementById("txt").value;
+             var select = document.getElementById("slt").value;
+             $.get('/coursesubjects/do_search', {course_name: text, subject_id: select});
+           }
+       </script>
+
+<div class="col-md-offset-1 col-md-4">
+<h1>Search Page</h1>
+<p>specify both course name and subject to find your course, you can select "Not specified" for subject</p>
+<%= form_tag(do_search_coursesubjects_path, method: "get", remote: true, role: "form", class: "form", onchange:"selectOption()") do %>
+
+  <div class="form-group">
+    <label class="control-label">Course:</label>
+    <%= text_field_tag(:course_name, "", class: "form-control", id: "txt") %>
+    <label>Subject:</label>
+    <%= select_tag(:subject_id, options_for_select([['Not specified', ""]]+@subjects_name_id), class: "form-control", id: "slt") %>
+  </div>
+
+  <!-- <%= submit_tag("Search", class: "btn btn-default" ) %> -->
+<% end %>
+</div>
+
+<div class="row col-md-offset-1 col-md-11">
+  <div id="search_results"></div>
+</div>
+
+<!-- <div>
+  <form name="query" action="coursesubjects/do_search">
+  Course:
+  <input type="text" name="course_name">
+  Subject:
+  <select name="subject_id">
+    <option value="">Not specified</option>
+    <option value="<%=options_for_select(@subjects_name_id)%>"></option>
+  </select><br>
+  <input type="submit" value="Search">
+  </form>
+
+  <div class="row col-md-offset-1 col-md-11">
+    <div id="search_results"></div>
+  </div>
+
+</div> -->

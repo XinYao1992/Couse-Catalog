@@ -7,6 +7,32 @@ class CoursesubjectsController < ApplicationController
     @coursesubjects = Coursesubject.all
   end
 
+  def search
+    #@coursesubjects = Coursesubject.all
+    @Coursesubject = Coursesubject.all
+    @subjects = Subject.all
+    @subjects_name_id = {}
+    @coursesubjects = nil
+    @subjects.each do |subject|
+      @subjects_name_id[subject.name] = subject.id
+    end
+    @subjects_name_id = Subject.all.map {|s| [s.name, s.subject_id]}
+  end
+
+  def do_search
+    #binding.pry
+    if params.fetch(:course_name) != nil and params.fetch(:course_name) != ""
+      if params.fetch(:subject_id) != ""
+        @coursesubjects = Coursesubject.where(course_name:params.fetch(:course_name).to_s, subject_id:params.fetch(:subject_id).to_s)
+      else
+        @coursesubjects = Coursesubject.where(course_name:params.fetch(:course_name))
+      end
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /coursesubjects/1
   # GET /coursesubjects/1.json
   def show
